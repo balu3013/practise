@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            position: relative;
+            overflow: hidden;
+            padding: 10px;
+        }
+        .flex{
+            position: relative;
+            display: flex;
+            width: 100%;
+            transition: .3s ease-in;
+            /* overflow: hidden; */
+        }
+        .flex .box{
+            width: 100%;
+            flex-grow: 1;
+            flex-shrink: 0;
+            position: relative;
+            padding: 5px;
+        }
+       
+        .inner{
+            border-radius: 5px;
+            position: relative;
+            width: 100%;
+            height: 450px;
+            background-color: red;
+        }
+   .inner:nth-child(2){
+            background-color: orangered !important;
+        }
+        .inner:nth-child(3){
+            background-color: aquamarine;
+        }
+        .inner:nth-child(4){
+            background-color: palevioletred;
+        }
+        .inner:nth-child(5){
+            background-color: chartreuse;
+        }
+        .dots{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            align-items: center;
+            position: relative;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        .dot-item{
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: rgb(188, 186, 186);
+            transition: .3s;
+        }
+        .dot-item.add{
+            background-color: red;
+            transform: scale(2.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="flex">
+            <div class="box">
+                <div class="inner"></div>
+            </div>
+            <div class="box">
+                <div class="inner"></div>
+            </div>
+            <div class="box">
+                <div class="inner"></div>
+            </div>
+            <div class="box">
+                <div class="inner"></div>
+            </div>
+            <div class="box">
+                <div class="inner"></div>
+            </div>
+        </div>
+        <div class="dots">
+            <div class="dot-item"></div>
+            <div class="dot-item"></div>
+            <div class="dot-item"></div>
+            <div class="dot-item"></div>
+            <div class="dot-item"></div>
+        </div>
+    </div>
+    <script>
+        // let first = document.querySelector('.first')
+        let flex = document.querySelector('.flex')
+        let boxes = document.querySelectorAll('.box')
+        let dots = document.querySelectorAll('.dot-item')
+
+        
+        
+        function removeClassList(){
+            dots.forEach((item)=>{
+                item.classList.remove('add')
+            })
+        }
+        function animate(){
+            let count =0
+            setInterval(()=>{
+               
+                if(count < boxes.length-1){
+                    dots[count].classList.add('add')
+                    flex.style.transform += "translateX(-100%)";
+                    removeClassList()
+                    count++;
+                    dots[count].classList.add('add')
+                }else{
+                    flex.style.transform= "translateX(0%)"
+                    count=0;
+                    removeClassList()
+                }
+            },2000)
+        }
+
+        animate()
+
+        if(true){
+            setTimeout(()=>{
+                console.log("settimeout function")
+            },2000)
+            console.log("inside a if block")
+        }else{
+            console.log("else block")
+        }
+        console.log("window")
+    </script>
+</body>
+</html>
